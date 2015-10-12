@@ -7,60 +7,68 @@
 
 struct product{
 	int id;
-	char *name;
+	char name[35];
 	int price;
 	int amount;
 };
 
+void buy(){
+printf("buy product\n");
+}
 
-void server(){
+void showList(struct product list[]){
+printf("This is the list of products:\n");
+printf("id	price	name\n");
+int i;
+for (i=0;i<7;i++){
+	printf("%i	%i	%s",list[i].id,list[i].price,list[i].name);
+}
+}
+
+
+void dialog(struct product goods[]){    //принимаем команды клиента и решаем что дальше делать
+char str[15];
+int com;
+printf("Enter your command:\n");
+scanf("%s", str);
+if (!strcmp(str, "buy"))
+        com=1;
+if (!strcmp(str, "list"))
+        com=2;
+switch (com ) {
+case 1:
+  buy();
+  break;
+case 2:
+  showList(goods);
+  break;
+default:
+  printf("Incorrect entry. ");
+  dialog(goods);
+  break;
+}
+}
+
+
+void servInit(){   //загружаем состояние магазина-информацию о товарах
 FILE *id,*names,*prices,*amount;
 id = fopen("id.txt","r");
 names = fopen("names.txt","r");
 prices = fopen("prices.txt","r");
 amount = fopen("amount.txt","r");
 char st[35];
-struct product goods[3];
+struct product goods[10];
 int i=0;
-/*while (!feof(names)){
-	fgets(st,35,names);
-	printf("i = %d\n",i);
-	printf("st = %s\n",st);
-	goods[i].name=&st;
-	printf("name = %s\n",goods[0].name);
+while ( !feof(names) ) {
+	fgets(goods[i].name,35,names);
+	fscanf(id,"%i",&goods[i].id);
+	fscanf(prices,"%i",&goods[i].price);
+	fscanf(amount,"%i",&goods[i].amount);
 	i++;
-}*/
-
-//for (i;i<3;i++){
-
-	fgets(st,35,names);
-	printf("i = %d\n",0);
-	printf("st = %s\n",st);
-	goods[0].name=st;
-	printf("name = %s\n",goods[0].name);
-	printf("name = %s\n",goods[1].name);
-	printf("name = %s\n",goods[2].name);
-
-	fgets(st,35,names);
-	printf("i = %d\n",1);
-	printf("st = %s\n",st);
-	goods[1].name=st;
-	printf("name = %s\n",goods[0].name);
-	printf("name = %s\n",goods[1].name);
-	printf("name = %s\n",goods[2].name);
-
-	fgets(st,35,names);
-	printf("i = %d\n",2);
-	printf("st = %s\n",st);
-	goods[2].name=st;
-	printf("name = %s\n",goods[0].name);
-	printf("name = %s\n",goods[1].name);
-	printf("name = %s\n",goods[2].name);
-
-//}
-
-
+	}
+dialog(goods);
 }
+
 
 
 int main(int argc, char**argv[])
@@ -70,7 +78,7 @@ int main(int argc, char**argv[])
 //	socklen_t addr_len;
 //	char mesg[50];
 	
-	server();
+	servInit();
 /*	return 0;
 
 	lsock=socket(AF_INET,SOCK_STREAM,0);
