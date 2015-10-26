@@ -17,64 +17,78 @@ struct product goods[10];
 int seNum=0;
 
 
-
-/*void add(int csock){
-char *name,*price,*amount;
-int n,id;
-printf("Enter product name:\n");
-n=recv(csock,name,1024,0);
-name[n]=0;
-strcpy (goods[seNum].name, name);
-printf("%s",name);
-
-printf("Enter product price:\n");
-n=recv(csock,price,1024,0);
-price[n]=0;
-//int price=atoi(price);
-printf("%s",price);
-//goods[seNum].price=price;
-
-printf("Enter product amount:\n");
-n=recv(csock,amount,1024,0);
-amount[n]=0;
-//int amount=atoi(amount);
-printf("%s",amount);
-//goods[seNum].amount=amount;
-
-goods[seNum].id=seNum;
-seNum++;
-}*/
-
-void buy(int csock){
-char *prname=(char*)malloc(35*sizeof(char));
-char *pram=(char*)malloc(5*sizeof(char));
-int n,am;
-printf("Enter product name:\n");
-n=recv(csock,prname,1024,0);
-prname[n]=0;
-printf(" %s ",prname);
-free(prname);
-printf("How many selected products you want to buy?\n");
-n=recv(csock,pram,1024,0);
-pram[n]=0;
-printf(" %s ",pram);
-free(pram);
-//am=atoi(pram);
-//printf("%d",am);
-
-}
-
-
-
-
 void showList(){
 printf("This is the list of products:\n");
 printf("id	price	name\n");
 int i;
 for (i=0;i<seNum-1;i++){
-	printf("%i	%i	%s",goods[i].id,goods[i].price,goods[i].name);
+	printf("%i	%i	%s",goods[i].amount,goods[i].price,goods[i].name);
 }
 }
+
+
+
+void add(int csock){
+char *prname=(char*)malloc(35*sizeof(char));
+char *pram=(char*)malloc(7*sizeof(char));
+int n,am,i;
+printf("Enter name of product:\n");
+n=recv(csock,prname,1024,0);
+prname[n]=0;
+printf("You selected: %s",prname);
+printf("How many selected products you want to add?\n");
+n=recv(csock,pram,1024,0);
+pram[n]=0;
+am=atoi(pram);
+for (i=0;i<seNum-1;i++){
+	if (!strncmp(goods[i].name,prname,strlen(prname)-2))
+		goods[i].amount=goods[i].amount+am;	
+}
+free(prname);
+free(pram);
+printf("New product list:\n");
+	showList();
+}
+
+
+void buy(int csock){
+char *prname=(char*)malloc(35*sizeof(char));
+char *pram=(char*)malloc(7*sizeof(char));
+char *ch=(char*)malloc(5*sizeof(char));
+char *ch1=(char*)malloc(5*sizeof(char));
+int n,am,i;
+printf("Enter name of selected product:\n");
+n=recv(csock,prname,1024,0);
+prname[n]=0;
+printf("You selected: %s",prname);
+printf("How many selected products you want to buy?\n");
+n=recv(csock,pram,1024,0);
+pram[n]=0;
+am=atoi(pram);
+printf("Do you really want to buy %s",prname);
+printf("Amount - %d (yes/no)\n",am);
+n=recv(csock,ch,1024,0);
+if (!strcmp(ch,"yes\r\n")){
+	for (i=0;i<seNum-1;i++){
+		if (!strncmp(goods[i].name,prname,strlen(prname)-2))
+			goods[i].amount=goods[i].amount-am;	
+	}
+}
+free(ch);
+free(prname);
+free(pram);
+printf("Do you to view our product list?(yes/no)\n");
+n=recv(csock,ch1,1024,0);
+if (!strcmp(ch1,"yes\r\n"));{
+	free(ch1);
+	showList();
+}
+}
+
+
+
+
+
 
 
 
@@ -108,8 +122,8 @@ case 2:
   showList();
   break;
 case 3:
-  //free(str);
-//  add(csock);
+  free(str);
+  add(csock);
   break;
 default:
   printf("Incorrect entry. ");
