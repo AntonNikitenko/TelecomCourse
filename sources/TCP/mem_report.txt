@@ -1,136 +1,23 @@
-user@debian:~/study/TelecomCourse/TelecomCourse/sources/TCP$ valgrind --leak-check=full ./server
-==14046== Memcheck, a memory error detector
-==14046== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
-==14046== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info
-==14046== Command: ./server
-==14046== 
+root@debian:/home/user/study/TelecomCourse/TelecomCourse/sources/TCP# valgrind --leak-check=full ./server
+==1746== Memcheck, a memory error detector
+==1746== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==1746== Using Valgrind-3.10.0 and LibVEX; rerun with -h for copyright info
+==1746== Command: ./server
+==1746== 
 Welcome to our e-shop!
 
 Enter command:
-==14046== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==14046==    at 0x4139BB1: recv (socket.S:63)
-==14046==    by 0x80488AE: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0xbeaa92d4 is on thread 1's stack
-==14046==  in frame #1, created by dialog (???)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x80488BD: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402C3D8: __GI_strlen (vg_replace_strmem.c:413)
-==14046==    by 0x40B3D1D: puts (ioputs.c:36)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402C3E3: __GI_strlen (vg_replace_strmem.c:413)
-==14046==    by 0x40B3D1D: puts (ioputs.c:36)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD666: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1292)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x40BD668: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1294)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD5A4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1307)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD63: __GI_mempcpy (mempcpy.S:49)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD68: __GI_mempcpy (mempcpy.S:52)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x40CAD6A: __GI_mempcpy (mempcpy.S:53)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD6C: __GI_mempcpy (mempcpy.S:54)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD5DA: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1320)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
+==1746== Syscall param socketcall.recv(buf) points to unaddressable byte(s)
+==1746==    at 0x4139BB1: recv (socket.S:63)
+==1746==    by 0x804897A: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==  Address 0x41fb68b is 0 bytes after a block of size 35 alloc'd
+==1746==    at 0x40291CC: malloc (vg_replace_malloc.c:296)
+==1746==    by 0x8048952: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746== 
 list
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD62B: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1333)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD633: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1344)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40B3DC4: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x80488DD: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x80488FB: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x8048919: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x8048937: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x8048955: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x402D54D: strcmp (vg_replace_strmem.c:755)
-==14046==    by 0x8048973: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
 This is the list of products:
 id	price	name
 1	1200	Laptop Asus
@@ -140,211 +27,62 @@ id	price	name
 5	18	Mouse A4Tech X7
 6	21	Keyboard Genius K806 XE
 7	15	Keyboard MicroXperts
+8	25	Logitech HD WebCam C270
 
 Enter command:
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x40CAD65: __GI_mempcpy (mempcpy.S:50)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x40B3DC1: puts (ioputs.c:41)
-==14046==    by 0x80488CA: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
 buy
 
 Enter product name:
-==14046== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==14046==    at 0x4139BB1: recv (socket.S:63)
-==14046==    by 0x8048762: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0xbeaa92a4 is on thread 1's stack
-==14046==  in frame #1, created by buy (???)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x8048771: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x4094277: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x4094488: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD666: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1292)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x40BD668: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1294)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD5A4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1307)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD63: __GI_mempcpy (mempcpy.S:49)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x40CAD65: __GI_mempcpy (mempcpy.S:50)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD68: __GI_mempcpy (mempcpy.S:52)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40CAD6C: __GI_mempcpy (mempcpy.S:54)
-==14046==    by 0x40BD5C4: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1312)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD5DA: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1320)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
- some laptop
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD62B: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1333)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x40BD633: _IO_file_xsputn@@GLIBC_2.1 (fileops.c:1344)
-==14046==    by 0x4094459: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Conditional jump or move depends on uninitialised value(s)
-==14046==    at 0x409445C: vfprintf (vfprintf.c:1642)
-==14046==    by 0x409BBFE: printf (printf.c:33)
-==14046==    by 0x8048783: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
+==1746== Syscall param socketcall.recv(buf) points to unaddressable byte(s)
+==1746==    at 0x4139BB1: recv (socket.S:63)
+==1746==    by 0x8048802: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048A78: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==  Address 0x41fbac0 is 792 bytes inside an unallocated block of size 4,192,320 in arena "client"
+==1746== 
+ nimbus2000
  How many selected products you want to buy?
-==14046== Syscall param socketcall.recv(args) points to uninitialised byte(s)
-==14046==    at 0x4139BB1: recv (socket.S:63)
-==14046==    by 0x80487A8: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0xbeaa92a4 is on thread 1's stack
-==14046==  in frame #1, created by buy (???)
-==14046== 
-==14046== Syscall param socketcall.recv(buf) points to unaddressable byte(s)
-==14046==    at 0x4139BB1: recv (socket.S:63)
-==14046==    by 0x80487A8: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0x7 is not stack'd, malloc'd or (recently) free'd
-==14046== 
-==14046== Use of uninitialised value of size 4
-==14046==    at 0x80487B7: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046== 
-==14046== Invalid write of size 1
-==14046==    at 0x80487B7: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0x6 is not stack'd, malloc'd or (recently) free'd
-==14046== 
-==14046== 
-==14046== Process terminating with default action of signal 11 (SIGSEGV)
-==14046==  Access not within mapped region at address 0x6
-==14046==    at 0x80487B7: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  If you believe this happened as a result of a stack
-==14046==  overflow in your program's main thread (unlikely but
-==14046==  possible), you can try to increase the size of the
-==14046==  main thread stack using the --main-stacksize= flag.
-==14046==  The main thread stack size used in this run was 8388608.
-==14046== Jump to the invalid address stated on the next line
-==14046==    at 0xD706F74: ???
-==14046==    by 0x8048CF6: ??? (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  Address 0xd706f74 is not stack'd, malloc'd or (recently) free'd
-==14046== 
-==14046== 
-==14046== Process terminating with default action of signal 11 (SIGSEGV)
-==14046==  Access not within mapped region at address 0xD706F74
-==14046==    at 0xD706F74: ???
-==14046==    by 0x8048CF6: ??? (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x804899E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==    by 0x8048BDE: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
-==14046==  If you believe this happened as a result of a stack
-==14046==  overflow in your program's main thread (unlikely but
-==14046==  possible), you can try to increase the size of the
-==14046==  main thread stack using the --main-stacksize= flag.
-==14046==  The main thread stack size used in this run was 8388608.
-==14046== 
-==14046== HEAP SUMMARY:
-==14046==     in use at exit: 1,408 bytes in 4 blocks
-==14046==   total heap usage: 4 allocs, 0 frees, 1,408 bytes allocated
-==14046== 
-==14046== LEAK SUMMARY:
-==14046==    definitely lost: 0 bytes in 0 blocks
-==14046==    indirectly lost: 0 bytes in 0 blocks
-==14046==      possibly lost: 0 bytes in 0 blocks
-==14046==    still reachable: 1,408 bytes in 4 blocks
-==14046==         suppressed: 0 bytes in 0 blocks
-==14046== Reachable blocks (those to which a pointer was found) are not shown.
-==14046== To see them, rerun with: --leak-check=full --show-leak-kinds=all
-==14046== 
-==14046== For counts of detected and suppressed errors, rerun with: -v
-==14046== Use --track-origins=yes to see where uninitialised values come from
-==14046== ERROR SUMMARY: 87 errors from 42 contexts (suppressed: 0 from 0)
-Ошибка сегментирования
-user@debian:~/study/TelecomCourse/TelecomCourse/sources/TCP$ 
+==1746== Syscall param socketcall.recv(buf) points to unaddressable byte(s)
+==1746==    at 0x4139BB1: recv (socket.S:63)
+==1746==    by 0x8048856: buy (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048A78: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==  Address 0x41fbb18 is 880 bytes inside an unallocated block of size 4,192,320 in arena "client"
+==1746== 
+ 4
+ 4
+Enter command:
+����
+==1746== Conditional jump or move depends on uninitialised value(s)
+==1746==    at 0x8048A54: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746== 
+==1746== Conditional jump or move depends on uninitialised value(s)
+==1746==    at 0x8048A59: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746== 
+==1746== Conditional jump or move depends on uninitialised value(s)
+==1746==    at 0x8048A5E: dialog (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746==    by 0x8048D0C: main (in /home/user/study/TelecomCourse/TelecomCourse/sources/TCP/server)
+==1746== 
+Enter product name:
+ 
+ How many selected products you want to buy?
+^C==1746== 
+==1746== HEAP SUMMARY:
+==1746==     in use at exit: 5 bytes in 1 blocks
+==1746==   total heap usage: 11 allocs, 10 frees, 1,593 bytes allocated
+==1746== 
+==1746== LEAK SUMMARY:
+==1746==    definitely lost: 0 bytes in 0 blocks
+==1746==    indirectly lost: 0 bytes in 0 blocks
+==1746==      possibly lost: 0 bytes in 0 blocks
+==1746==    still reachable: 5 bytes in 1 blocks
+==1746==         suppressed: 0 bytes in 0 blocks
+==1746== Reachable blocks (those to which a pointer was found) are not shown.
+==1746== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==1746== 
+==1746== For counts of detected and suppressed errors, rerun with: -v
+==1746== Use --track-origins=yes to see where uninitialised values come from
+==1746== ERROR SUMMARY: 10 errors from 6 contexts (suppressed: 0 from 0)
 
