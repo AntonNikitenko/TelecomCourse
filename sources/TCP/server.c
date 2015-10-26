@@ -46,18 +46,21 @@ seNum++;
 }*/
 
 void buy(int csock){
-char *prname,*pram;
+char *prname=(char*)malloc(35*sizeof(char));
+char *pram=(char*)malloc(5*sizeof(char));
 int n,am;
 printf("Enter product name:\n");
 n=recv(csock,prname,1024,0);
 prname[n]=0;
 printf(" %s ",prname);
+free(prname);
 printf("How many selected products you want to buy?\n");
 n=recv(csock,pram,1024,0);
 pram[n]=0;
 printf(" %s ",pram);
-am=atoi(pram);
-printf("%d",am);
+free(pram);
+//am=atoi(pram);
+//printf("%d",am);
 
 }
 
@@ -78,7 +81,7 @@ for (i=0;i<seNum-1;i++){
 
 void dialog(int csock){
 int com,n;
-char *str;
+char *str=(char*)malloc(35*sizeof(char));
 printf("\nEnter command:\n");
 n=recv(csock,str,1024,0);
 str[n]=0;
@@ -97,16 +100,20 @@ if (!strcmp(str, "exit\r\n"))
         com=6;
 switch (com ) {
 case 1:
+  free(str);
   buy(csock);
   break;
 case 2:
+  free(str);
   showList();
   break;
 case 3:
+  //free(str);
 //  add(csock);
   break;
 default:
   printf("Incorrect entry. ");
+  free(str);
   dialog(csock);
   break;
 }
@@ -121,7 +128,6 @@ id = fopen("id.txt","r");
 names = fopen("names.txt","r");
 prices = fopen("prices.txt","r");
 amount = fopen("amount.txt","r");
-char st[35];
 int i=0;
 while ( !feof(names) ) {
 	fgets(goods[i].name,35,names);
@@ -131,6 +137,10 @@ while ( !feof(names) ) {
 	i++;
 	seNum++;
 	}
+fclose(id);
+fclose(names);
+fclose(prices);
+fclose(amount);
 }
 
 
