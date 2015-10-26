@@ -18,8 +18,8 @@ int seNum=0;
 
 
 
-void add(int csock){
-char *name,*sprice,*samount;
+/*void add(int csock){
+char *name,*price,*amount;
 int n,id;
 printf("Enter product name:\n");
 n=recv(csock,name,1024,0);
@@ -28,30 +28,36 @@ strcpy (goods[seNum].name, name);
 printf("%s",name);
 
 printf("Enter product price:\n");
-n=recv(csock,sprice,1024,0);
-sprice[n]=0;
-//int price=atoi(sprice);
-printf("%s",sprice);
+n=recv(csock,price,1024,0);
+price[n]=0;
+//int price=atoi(price);
+printf("%s",price);
 //goods[seNum].price=price;
 
 printf("Enter product amount:\n");
-n=recv(csock,samount,1024,0);
-samount[n]=0;
-//int amount=atoi(samount);
-printf("%s",samount);
+n=recv(csock,amount,1024,0);
+amount[n]=0;
+//int amount=atoi(amount);
+printf("%s",amount);
 //goods[seNum].amount=amount;
 
 goods[seNum].id=seNum;
 seNum++;
-}
+}*/
 
 void buy(int csock){
-char *str;
-int n;
+char *prname,*pram;
+int n,am;
 printf("Enter product name:\n");
-n=recv(csock,str,1024,0);
-str[n]=0;
-printf(" %s ",str);
+n=recv(csock,prname,1024,0);
+prname[n]=0;
+printf(" %s ",prname);
+printf("How many selected products you want to buy?\n");
+n=recv(csock,pram,1024,0);
+pram[n]=0;
+printf(" %s ",pram);
+am=atoi(pram);
+printf("%d",am);
 
 }
 
@@ -83,6 +89,12 @@ if (!strcmp(str, "list\r\n"))
         com=2;
 if (!strcmp(str, "add\r\n"))
         com=3;
+if (!strcmp(str, "create\r\n"))
+        com=4;
+if (!strcmp(str, "remove\r\n"))
+        com=5;
+if (!strcmp(str, "exit\r\n"))
+        com=6;
 switch (com ) {
 case 1:
   buy(csock);
@@ -91,7 +103,7 @@ case 2:
   showList();
   break;
 case 3:
-  add(csock);
+//  add(csock);
   break;
 default:
   printf("Incorrect entry. ");
