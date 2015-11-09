@@ -13,88 +13,165 @@ struct product{
 	int amount;
 };
 
-struct product goods[10];
+struct product goods[100];
 int seNum=0;
+
+void dialog(int csock);
 
 
 void showList(){
-printf("This is the list of products:\n");
-printf("id	price	name\n");
+printf("\n\nThis is the list of products:\n");
+printf("id	amount	price	name\n");
 int i;
+for (i=0;i<100;i++){
+	if(goods[i].id!=0){
+		printf("%i	%i	%i	%s",goods[i].id,goods[i].amount,goods[i].price,goods[i].name);
+	}
+}
+printf("seNum=%i\n",seNum);
+}
+
+
+void create(int csock){
+char *name1=(char*)malloc(35*sizeof(char));
+char *temp1=(char*)malloc(35*sizeof(char));
+char *am1=(char*)malloc(7*sizeof(char));
+char *price1=(char*)malloc(7*sizeof(char));
+int n,am,pr,i;
+
+printf("\nEnter name of product:\n");
+n=recv(csock,name1,1024,0);
+name1[n]=0;
+printf("You created: %s",name1);
+strncpy(temp1,name1,strlen(name1)-2);
+strcat(temp1,"\n");
+strcpy(goods[seNum-1].name,temp1);
+free(temp1);
+free(name1);
+
+printf("Enter the product price: \n");
+n=recv(csock,price1,1024,0);
+price1[n]=0;
+pr=atoi(price1);
+free(price1);
+printf("%i\n",pr);
+goods[seNum-1].price=pr;
+
+printf("How many of created products you want to add? \n");
+n=recv(csock,am1,1024,0);
+am1[n]=0;
+am=atoi(am1);
+free(am1);
+printf("%i\n",am);
+goods[seNum-1].amount=am;
+goods[seNum-1].id=seNum;
 for (i=0;i<seNum-1;i++){
-	printf("%i	%i	%s",goods[i].amount,goods[i].price,goods[i].name);
+	if(goods[i].id==seNum)
+		goods[seNum-1].id++;		
+
 }
+seNum++;
 }
+
+
+
+
+void rem(int csock){
+char *name4=(char*)malloc(35*sizeof(char));
+int n,i,flag=0;
+printf("\n\n\nEnter name of product you want to remove:\n");
+n=recv(csock,name4,1024,0);
+name4[n]=0;
+printf("You selected: %s",name4);
+for (i=0;i<100;i++){
+	if (!strncmp(goods[i].name,name4,strlen(name4)-2)){
+		goods[i].amount=0;
+		goods[i].price=0;
+		goods[i].id=0;
+		goods[i].name[0]=0;
+		flag++;
+	}	
+}
+if(flag==1)
+	printf("Succesfully removed.\n");
+else printf("No such product. Try again.\n");
+free(name4);
+}
+
+
+
+
+
 
 
 
 void add(int csock){
-char *prname=(char*)malloc(35*sizeof(char));
-char *pram=(char*)malloc(7*sizeof(char));
-int n,am,i;
-printf("Enter name of product:\n");
-n=recv(csock,prname,1024,0);
-prname[n]=0;
-printf("You selected: %s",prname);
+char *name3=(char*)malloc(35*sizeof(char));
+char *am3=(char*)malloc(7*sizeof(char));
+int n,am,i,flag=0;
+printf("\n\nEnter name of product:\n");
+n=recv(csock,name3,1024,0);
+name3[n]=0;
 printf("How many selected products you want to add?\n");
-n=recv(csock,pram,1024,0);
-pram[n]=0;
-am=atoi(pram);
+n=recv(csock,am3,1024,0);
+am3[n]=0;
+am=atoi(am3);
+free(am3);
 for (i=0;i<seNum-1;i++){
-	if (!strncmp(goods[i].name,prname,strlen(prname)-2))
-		goods[i].amount=goods[i].amount+am;	
+	if (!strncmp(goods[i].name,name3,strlen(name3)-2)){
+		goods[i].amount=goods[i].amount+am;
+		flag++;
+	}	
 }
-free(prname);
-free(pram);
-printf("New product list:\n");
-	showList();
+if(flag==1)
+	printf("Changes doned.\n");
+else printf("No such product. Try again.\n");
+free(name3);
 }
+
+
 
 
 void buy(int csock){
-char *prname=(char*)malloc(35*sizeof(char));
-char *pram=(char*)malloc(7*sizeof(char));
-char *ch=(char*)malloc(5*sizeof(char));
-char *ch1=(char*)malloc(5*sizeof(char));
-int n,am,i;
-printf("Enter name of selected product:\n");
-n=recv(csock,prname,1024,0);
-prname[n]=0;
-printf("You selected: %s",prname);
+char *name2=(char*)malloc(35*sizeof(char));
+char *am2=(char*)malloc(7*sizeof(char));
+int n,am,i,flag=0;
+printf("\n\nEnter name of selected product:\n");
+n=recv(csock,name2,1024,0);
+name2[n]=0;
+printf("You selected: %s",name2);
 printf("How many selected products you want to buy?\n");
-n=recv(csock,pram,1024,0);
-pram[n]=0;
-am=atoi(pram);
-printf("Do you really want to buy %s",prname);
-printf("Amount - %d (yes/no)\n",am);
-n=recv(csock,ch,1024,0);
-if (!strcmp(ch,"yes\r\n")){
-	for (i=0;i<seNum-1;i++){
-		if (!strncmp(goods[i].name,prname,strlen(prname)-2))
-			goods[i].amount=goods[i].amount-am;	
-	}
+n=recv(csock,am2,1024,0);
+am2[n]=0;
+am=atoi(am2);
+free(am2);
+printf("Processing your request... %s",name2);
+printf("Amount - %d\n",am);
+for (i=0;i<seNum-1;i++){
+	if (!strncmp(goods[i].name,name2,strlen(name2)-2)){
+		goods[i].amount=goods[i].amount-am;
+		flag++;
+	}	
 }
-free(ch);
-free(prname);
-free(pram);
-printf("Do you to view our product list?(yes/no)\n");
-n=recv(csock,ch1,1024,0);
-if (!strcmp(ch1,"yes\r\n"));{
-	free(ch1);
-	showList();
-}
+
+if(flag==1)
+	printf("Purchase is made. Thank you for your order.\n");
+else printf("Purchase error. Please try again.\n");
+free(name2);
 }
 
 
 
-
+//void disc(int csock){
+//close(csock);
+//}
 
 
 
 
 
 void dialog(int csock){
-int com,n;
+int n,com=0;
 char *str=(char*)malloc(35*sizeof(char));
 printf("\nEnter command:\n");
 n=recv(csock,str,1024,0);
@@ -112,23 +189,28 @@ if (!strcmp(str, "remove\r\n"))
         com=5;
 if (!strcmp(str, "exit\r\n"))
         com=6;
+free(str);
 switch (com ) {
 case 1:
-  free(str);
   buy(csock);
   break;
 case 2:
-  free(str);
   showList();
   break;
 case 3:
-  free(str);
   add(csock);
   break;
+case 4:
+   create(csock);
+  break;
+case 5:
+   rem(csock);
+   break;
+//case 6:
+//   disc(csock);
+//   break;
 default:
   printf("Incorrect entry. ");
-  free(str);
-  dialog(csock);
   break;
 }
 }
